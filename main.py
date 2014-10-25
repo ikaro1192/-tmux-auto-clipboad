@@ -4,16 +4,17 @@ import time
 import commands
 import os
 
-stock =commands.getoutput('tmux save-buffer -')
+def get_now_tmux_buffer():
+    return commands.getoutput('tmux save-buffer -')
 
-while True:
-        insert = commands.getoutput('tmux save-buffer -')
-        if stock != insert:
-                os.system('clear')
+if __name__ == '__main__':
+
+    before = get_now_tmux_buffer()
+
+    while True:
+
+            if before != get_now_tmux_buffer():
                 os.system('tmux save-buffer -|xsel --input --clipboard')
-                print insert
-                print "========================================="
-                stock = insert
-                print commands.getoutput('date')
+                before = get_now_tmux_buffer()
 
-        time.sleep(1)
+            time.sleep(1)

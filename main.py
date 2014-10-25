@@ -4,13 +4,13 @@ import time
 import commands
 import os
 
-counter = 0
-stock =commands.getoutput('parcellite -c')
+stock =commands.getoutput('tmux save-buffer -')
 
-while counter ==0:
-        insert = commands.getoutput('parcellite -c')
+while True:
+        insert = commands.getoutput('tmux save-buffer -')
         if stock != insert:
                 os.system('clear')
+                os.system('tmux save-buffer -|xsel --input --clipboard')
                 print insert
                 print "========================================="
                 stock = insert

@@ -14,7 +14,7 @@ if __name__ == '__main__':
     while True:
 
             if before != get_now_tmux_buffer():
-                os.system('tmux save-buffer -|xsel --input --clipboard')
+                os.system('tmux save-buffer -|xsel --input --clipboard --display :0')
                 before = get_now_tmux_buffer()
 
             time.sleep(1)
